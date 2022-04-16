@@ -20,7 +20,7 @@ namespace WebAddressbookTests
             group.Header = "Test2Header";
             group.Footer = "Test2Footer";
             FillGroupForm(group);
-            SubmitGroupCreation();
+            SubmitCreation();
             ReturnToGroupPage();
             Logout();
         }
