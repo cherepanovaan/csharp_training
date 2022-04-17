@@ -15,7 +15,6 @@ namespace WebAddressbookTests
             ContactData contact = new ContactData("Test name", "Test last name");
 
             app.ContactHelper.Create(contact);
-            app.Navigator.GoToHomePage();
             app.Auth.Logout();
         }
 
@@ -24,7 +23,6 @@ namespace WebAddressbookTests
         {
             ContactData contact = new ContactData("", "");
             app.ContactHelper.Create(contact);
-            app.Navigator.GoToHomePage();
             app.Auth.Logout();
         }
     }
