@@ -29,7 +29,11 @@ namespace WebAddressbookTests
         public ContactHelper Modify(int p, ContactData newContact)
         {
             manager.Navigator.GoToHomePage();
-
+            if (! IsElementPresent(By.Name("selected[]")))
+            {
+                ContactData contact = new ContactData("Test1", "Test1");
+                Create(contact);
+            }
             SelectContact(p);
             InitContactModification();
             FillContactForm(newContact);
@@ -41,7 +45,11 @@ namespace WebAddressbookTests
         public ContactHelper Remove(int p)
         {
             manager.Navigator.GoToHomePage();
-
+            if (! IsElementPresent(By.Name("selected[]")))
+            {
+                ContactData contact = new ContactData("Test1", "Test1");
+                Create(contact);
+            }
             SelectContact(p);
             RemoveContact();
             CloseAlert();
