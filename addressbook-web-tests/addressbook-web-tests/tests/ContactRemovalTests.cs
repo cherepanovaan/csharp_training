@@ -13,6 +13,11 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
+            if (! app.ContactHelper.IsElementOnContactPage())
+            {
+                ContactData contact = new ContactData("Test1", "Test1");
+                app.ContactHelper.Create(contact);
+            }
             app.ContactHelper.Remove(1);
         }
     }

@@ -13,6 +13,12 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
+            if (! app.ContactHelper.IsElementOnContactPage())
+            {
+                ContactData contact = new ContactData("Test1", "Test1");
+
+                app.ContactHelper.Create(contact);
+            }
             ContactData newContact = new ContactData("Test Modify", "Test last Modify");
 
             app.ContactHelper.Modify(1, newContact);

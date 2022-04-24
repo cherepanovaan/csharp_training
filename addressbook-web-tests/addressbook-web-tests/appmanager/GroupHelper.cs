@@ -30,14 +30,6 @@ namespace WebAddressbookTests
         public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
-            if (! IsElementPresent(By.Name("selected[]")))
-            {
-                GroupData group = new GroupData("Test1");
-                group.Header = "Test1";
-                group.Footer = "Test1";
-
-                Create(group);
-            }
             SelectGroup(p);
             InitGroupModification();
             FillGroupForm(newData);
@@ -49,14 +41,6 @@ namespace WebAddressbookTests
         public GroupHelper Remove(int p)
         {
             manager.Navigator.GoToGroupsPage();
-            if (! IsElementPresent(By.Name("selected[]")))
-            {
-                GroupData group = new GroupData("Test1ForDelete");
-                group.Header = "Test1ForDelete";
-                group.Footer = "Test1ForDelete";
-
-                Create(group);
-            }
             SelectGroup(p);
             RemoveGroup();
             ReturnToGroupPage();
@@ -111,6 +95,12 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.LinkText("group page")).Click();
             return this;
+        }
+
+        public bool IsElementOnGroupPage()
+        {
+            manager.Navigator.GoToGroupsPage();
+            return IsElementPresent(By.Name("selected[]"));
         }
     }
 }

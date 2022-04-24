@@ -13,6 +13,14 @@ namespace WebAddressbookTests
         [Test]
         public void GroupModificationTest()
         {
+            if (! app.GroupHelper.IsElementOnGroupPage())
+            {
+                GroupData group = new GroupData("Test1");
+                group.Header = "Test1";
+                group.Footer = "Test1";
+
+                app.GroupHelper.Create(group);
+            }
             GroupData newData = new GroupData("TestModify");
             newData.Header = null;
             newData.Footer = null;
