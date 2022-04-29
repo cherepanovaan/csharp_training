@@ -65,13 +65,13 @@ namespace WebAddressbookTests
 
         public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "+1]/td[8]/a/img")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (index+2) + "]/td[8]/a/img")).Click();
             return this;
         }
 
         public ContactHelper SelectContact(int index)
         {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "+1]/td/input")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (index+2) + "]/td/input")).Click();
             return this;
         }
 
@@ -98,6 +98,19 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             return IsElementPresent(By.Name("selected[]"));
+        }
+
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
+            foreach (IWebElement element in elements)
+            {
+                string[] tr = element.Text.Split(' ');
+                contacts.Add(new ContactData(tr[1], tr[0]));
+            }
+            return contacts;
         }
     }
 }
