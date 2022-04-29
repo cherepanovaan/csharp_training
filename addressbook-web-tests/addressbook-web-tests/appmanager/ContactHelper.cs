@@ -29,8 +29,7 @@ namespace WebAddressbookTests
         public ContactHelper Modify(int p, ContactData newContact)
         {
             manager.Navigator.GoToHomePage();
-            SelectContact(p);
-            InitContactModification();
+            InitContactModification(p);
             FillContactForm(newContact);
             SubmitModification();
             ReturnToHomePage();
@@ -64,9 +63,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper InitContactModification()
+        public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + index + "+1]/td[8]/a/img")).Click();
             return this;
         }
 
@@ -95,7 +94,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public bool IsElementOnContactPage()
+        public bool IsContactOnPage()
         {
             manager.Navigator.GoToHomePage();
             return IsElementPresent(By.Name("selected[]"));
