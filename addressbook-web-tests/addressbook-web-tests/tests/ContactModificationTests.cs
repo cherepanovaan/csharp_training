@@ -14,6 +14,7 @@ namespace WebAddressbookTests
         public void ContactModificationTest()
         {
             List<ContactData> oldContacts = app.ContactHelper.GetContactList();
+            ContactData oldData = oldContacts[0];
 
             if (! app.ContactHelper.IsContactOnPage())
             {
@@ -25,12 +26,23 @@ namespace WebAddressbookTests
 
             app.ContactHelper.Modify(0, newContact);
 
+            Assert.AreEqual(oldContacts.Count, app.ContactHelper.GetContactCount());
+
             List<ContactData> newContacts = app.ContactHelper.GetContactList();
-            oldContacts[1].FirstName = newContact.FirstName;
-            oldContacts[1].LastName = newContact.LastName;
+            oldContacts[0].FirstName = newContact.FirstName;
+            oldContacts[0].LastName = newContact.LastName;
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
+
+            foreach (ContactData contact in newContacts)
+            {
+                if (contact.Id == oldData.Id)
+                {
+                    Assert.AreEqual(newContact.FirstName, contact.FirstName);
+                    Assert.AreEqual(newContact.LastName, contact.LastName);
+                }
+            }
         }
     }
 }
