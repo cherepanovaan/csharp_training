@@ -31,9 +31,19 @@ namespace WebAddressbookTests
         [Test]
         public void EmptyContactCreationTest()
         {
+            List<ContactData> oldContacts = app.ContactHelper.GetContactList();
+
             ContactData contact = new ContactData("", "");
 
             app.ContactHelper.Create(contact);
+
+            Assert.AreEqual(oldContacts.Count + 1, app.ContactHelper.GetContactCount());
+
+            List<ContactData> newContacts = app.ContactHelper.GetContactList();
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

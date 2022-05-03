@@ -114,8 +114,8 @@ namespace WebAddressbookTests
                 ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
                 foreach (IWebElement element in elements)
                 {
-                    string[] tr = element.Text.Split(' ');
-                    contactCache.Add(new ContactData(tr[1], tr[0])
+                    IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                    contactCache.Add(new ContactData(cells[2].Text, cells[1].Text)
                     {
                         Id = element.FindElement(By.TagName("input")).GetAttribute("value")
                     });
