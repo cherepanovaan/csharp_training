@@ -39,11 +39,11 @@ namespace WebAddressbookTests
 
         public int CompareTo(ContactData other)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (LastName.CompareTo(other.LastName) == 0)
             {
-                return 1;
+                return FirstName.CompareTo(other.FirstName);
             }
-            return FirstName.CompareTo(other.FirstName) & LastName.CompareTo(other.LastName);
+            return LastName.CompareTo(other.LastName);
         }
 
         public string FirstName { get; set; }
