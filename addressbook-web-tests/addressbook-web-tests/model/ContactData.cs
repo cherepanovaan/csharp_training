@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
@@ -10,6 +11,7 @@ namespace WebAddressbookTests
     {
         private string allEmails;
         private string allPhones;
+        private string allInfo;
 
         public ContactData(string firstName, string lastName)
         {
@@ -109,6 +111,32 @@ namespace WebAddressbookTests
             }
         }
 
+        public string AllInfo
+         {
+             get
+             {
+                 if (allInfo != null)
+                 {
+                     return allInfo;
+                 }
+                 else
+                 {
+                     return FirstName + " " + LastName + "\r\n" 
+                         + Address + "\r\n\r\n"
+                         + "H: " + HomePhone + "\r\n"
+                         + "M: " + MobilePhone + "\r\n"
+                         + "W: " + WorkPhone + "\r\n\r\n"
+                         + Email + "\r\n"
+                         + Email2 + "\r\n"
+                         + Email3;
+                 }
+             }
+             set
+             {
+                 allInfo = value;
+             }
+         }
+
         private string CleanUp(string phone)
         {
             if (phone == null || phone == "")
@@ -116,7 +144,7 @@ namespace WebAddressbookTests
                 return "";
 
             }
-            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
         }
     }
 }

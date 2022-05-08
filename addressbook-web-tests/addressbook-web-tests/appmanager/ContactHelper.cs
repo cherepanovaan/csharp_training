@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
@@ -67,13 +68,19 @@ namespace WebAddressbookTests
 
         public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (index+2) + "]/td[8]/a/img")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (index + 2) + "]/td[8]/a/img")).Click();
             return this;
         }
 
         public ContactHelper SelectContact(int index)
         {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (index+2) + "]/td/input")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (index + 2) + "]/td/input")).Click();
+            return this;
+        }
+
+        public ContactHelper InitContactDetails(int index)
+        {
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (index + 2) + "]/td[7]/a/img")).Click();
             return this;
         }
 
@@ -129,6 +136,14 @@ namespace WebAddressbookTests
             return driver.FindElements(By.Name("entry")).Count;
         }
 
+        public string GetContactInfoFromDetails(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactDetails(index);
+            string div = driver.FindElement(By.Id("content")).Text;
+            return div;
+        }
+
         public ContactData GetContactInfoFromTable(int index)
         {
             manager.Navigator.GoToHomePage();
@@ -171,8 +186,16 @@ namespace WebAddressbookTests
                 Email3 = email3,
                 HomePhone = homePhone, 
                 MobilePhone = mobilePhone, 
-                WorkPhone = workPhone
+                WorkPhone = workPhone,
             };
+        }
+
+        public int GetNumberOfSearchResults()
+        {
+            manager.Navigator.GoToHomePage();
+            string text = driver.FindElement(By.TagName("label")).Text;
+            Match m = new Regex(@"\d+").Match(text);
+            return Int32.Parse(m.Value);
         }
     }
 }
