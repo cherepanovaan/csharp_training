@@ -77,7 +77,7 @@ namespace WebAddressbookTests
                 }
                else
                 {
-                    return Email + "\r\n" + Email2 + "\r\n" + Email3;
+                    return (Email + "\r\n" + Email2 + "\r\n" + Email3).Trim();
                 }
             }
             set
@@ -144,7 +144,7 @@ namespace WebAddressbookTests
                 return "";
 
             }
-            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+            return Regex.Replace(phone, "[ ()-]", "") + "\r\n";
         }
     }
 }
