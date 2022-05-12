@@ -141,7 +141,7 @@ namespace WebAddressbookTests
             manager.Navigator.GoToHomePage();
             InitContactDetails(index);
             string div = driver.FindElement(By.Id("content")).Text;
-            return div;
+            return Regex.Replace(div, "[HMW]: ", "");
         }
 
         public ContactData GetContactInfoFromTable(int index)

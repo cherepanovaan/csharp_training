@@ -121,14 +121,14 @@ namespace WebAddressbookTests
                  }
                  else
                  {
-                     return FirstName + " " + LastName + "\r\n" 
+                     return (FirstName + " " + LastName + "\r\n" 
                          + Address + "\r\n\r\n"
-                         + "H: " + HomePhone + "\r\n"
-                         + "M: " + MobilePhone + "\r\n"
-                         + "W: " + WorkPhone + "\r\n\r\n"
+                         + HomePhone + "\r\n"
+                         + MobilePhone + "\r\n"
+                         + WorkPhone + "\r\n\r\n"
                          + Email + "\r\n"
                          + Email2 + "\r\n"
-                         + Email3;
+                         + Email3).Trim();
                  }
              }
              set
