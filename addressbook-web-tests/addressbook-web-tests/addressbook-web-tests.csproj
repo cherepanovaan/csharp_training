@@ -88,6 +88,9 @@
     <Compile Include="tests\ContactCreationTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="groups.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="testFigure\ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
