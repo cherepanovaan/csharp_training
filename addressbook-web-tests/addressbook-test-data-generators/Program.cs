@@ -34,12 +34,12 @@ namespace addressbook_test_data_generators
                     });
                 }
 
-                if (format == "excel")
+                /*if (format == "excel")
                 {
                     writeGroupsToExcelFile(groups, filename);
                 }
                 else
-                {
+                {*/
                     StreamWriter writer = new StreamWriter(filename);
                     if (format == "csv")
                     {
@@ -59,14 +59,14 @@ namespace addressbook_test_data_generators
                     }
 
                     writer.Close();
-                }
+                //}
             }
             else if (dataType == "contact")
             {
                 List<ContactData> contacts = new List<ContactData>();
                 for (int i = 0; i < count; i++)
                 {
-                    contacts.Add(new ContactData(TestBase.GenerateRandomString(10), TestBase.GenerateRandomString(10)));
+                    contacts.Add(new ContactData(TestBase.GenerateRandomString(50), TestBase.GenerateRandomString(50)));
                 }
 
                 StreamWriter writer = new StreamWriter(filename);
