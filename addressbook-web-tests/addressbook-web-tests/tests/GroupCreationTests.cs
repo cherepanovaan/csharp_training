@@ -122,7 +122,7 @@ namespace WebAddressbookTests
         [Test]
         public void TestDBConnectivityForGroups()
         {
-            DateTime start = DateTime.Now;
+            /*DateTime start = DateTime.Now;
             List<GroupData> fromUi = app.GroupHelper.GetGroupList();
             DateTime end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
@@ -131,6 +131,16 @@ namespace WebAddressbookTests
             List<GroupData> fromDb = GroupData.GetAll();
             end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
+
+            foreach(ContactData contact in GroupData.GetAll()[1].GetContacts())
+            {
+                System.Console.Out.WriteLine(contact);
+            }*/
+
+            foreach(ContactData contact in ContactData.GetAll())
+            {
+                System.Console.Out.WriteLine(contact.Deprecated);
+            }
         }
 
     }
