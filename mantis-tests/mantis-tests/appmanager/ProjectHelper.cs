@@ -21,22 +21,42 @@ namespace mantis_tests
             SubmitCreation();
         }
 
-        private void GoToControlProject()
+        public void RemoveProject(int p)
+        {
+            manager.Menu.GoToControlMenu();
+
+            GoToControlProject();
+            SelectProject(p);
+            Remove();
+            Remove();
+        }
+
+        public void SelectProject(int p)
+        {
+            driver.FindElement(By.XPath("//a[@href='manage_proj_edit_page.php?project_id="+ p +"']")).Click();
+        }
+
+        public void Remove()
+        {
+            driver.FindElement(By.XPath("//input[@value='Удалить проект']")).Click();
+        }
+
+        public void GoToControlProject()
         {
             driver.FindElement(By.XPath("//a[@href='/mantisbt-2.25.4/manage_proj_page.php']")).Click();
         }
 
-        private void GoToAddNewProject()
+        public void GoToAddNewProject()
         {
             driver.FindElement(By.XPath("//button[@type='submit']")).Click();
         }
 
-        private void FillProjectForm(ProjectData project)
+        public void FillProjectForm(ProjectData project)
         {
             driver.FindElement(By.Name("name")).SendKeys(project.Name);
         }
 
-        private void SubmitCreation()
+        public void SubmitCreation()
         {
             driver.FindElement(By.XPath("//input[@value='Добавить проект']")).Click();
         }
