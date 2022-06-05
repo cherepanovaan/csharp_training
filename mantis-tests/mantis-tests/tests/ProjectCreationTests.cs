@@ -13,7 +13,7 @@ namespace mantis_tests
         [Test]
         public void ProjectCreationTest()
         {
-            ProjectData project = new ProjectData("Test");
+            ProjectData project = new ProjectData(GenerateRandomString(10));
             app.ProjectHelper.CreateProject(project);
             app.loginHelper.Logout();
         }
