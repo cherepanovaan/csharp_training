@@ -16,8 +16,7 @@ namespace mantis_tests
             using (Stream localFile = File.Open("config_inc.php", FileMode.Open))
             {
                 app.Ftp.Upload("/config_inc.php", localFile);
-            }
-                
+            }       
         }
 
         [Test]
@@ -25,10 +24,13 @@ namespace mantis_tests
         {
             AccountData account = new AccountData()
             {
-                Name = "testuser",
+                Name = "testuser3",
                 Password = "password",
-                Email = "testuser@localhost.localdomain"
+                Email = "testuser3@localhost.localdomain"
             };
+
+            app.James.Delete(account);
+            app.James.Add(account);
 
             app.Registration.Register(account);
         }
