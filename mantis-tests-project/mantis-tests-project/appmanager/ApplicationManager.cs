@@ -8,23 +8,14 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace mantis_tests
+namespace mantis_tests_project
 {
     public class ApplicationManager
     {
         protected IWebDriver driver;
         protected string baseURL;
 
-        public RegistrationHelper Registration { get; set; }
-        public FtpHelper Ftp { get; set; }
-        public JamesHelper James { get; set; }
-        public MailHelper Mail { get; set; }
-        
         public LoginHelper loginHelper;
-
-        public MenuHelper menuHelper;
-        
-        public ProjectHelper projectHelper;
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -33,13 +24,7 @@ namespace mantis_tests
             driver = new FirefoxDriver();
             baseURL = "http://localhost";
 
-            Registration = new RegistrationHelper(this);
-            Ftp = new FtpHelper(this);
-            James = new JamesHelper(this);
-            Mail = new MailHelper(this);
             loginHelper = new LoginHelper(this);
-            menuHelper = new MenuHelper(this);
-            projectHelper = new ProjectHelper(this);
         }
 
         ~ApplicationManager()
@@ -78,22 +63,6 @@ namespace mantis_tests
             get
             {
                 return loginHelper;
-            }
-        }
-
-        public MenuHelper Menu
-        {
-            get
-            {
-                return menuHelper;
-            }
-        }
-
-        public ProjectHelper ProjectHelper
-        {
-            get
-            {
-                return projectHelper;
             }
         }
     }

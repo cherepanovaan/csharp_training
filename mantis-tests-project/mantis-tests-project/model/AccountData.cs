@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mantis_tests
+namespace mantis_tests_project
 {
     public class AccountData
     {
@@ -17,7 +17,5 @@ namespace mantis_tests
             this.Name = name;
             this.Password = password;
         }
-
-        public AccountData() { }
     }
 }
