@@ -39,7 +39,7 @@ namespace mantis_tests
             if (IsLoggedIn())
             {
                 driver.FindElement(By.ClassName("user-info")).Click();
-                driver.FindElement(By.XPath("//a[@href='/mantisbt-2.25.4/logout_page.php']")).Click();
+                driver.FindElement(By.XPath("//a[@href='" + hrefBase + "/logout_page.php']")).Click();
             }
         }
 

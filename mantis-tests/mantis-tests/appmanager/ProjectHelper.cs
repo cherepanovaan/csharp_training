@@ -21,19 +21,19 @@ namespace mantis_tests
             SubmitCreation();
         }
 
-        public void RemoveProject(int p)
+        public void RemoveProject(ProjectData project)
         {
             manager.Menu.GoToControlMenu();
 
             GoToControlProject();
-            SelectProject(p);
+            SelectProject(project.Id);
             Remove();
             Remove();
         }
 
-        public void SelectProject(int p)
+        public void SelectProject(string index)
         {
-            driver.FindElement(By.XPath("//a[@href='manage_proj_edit_page.php?project_id="+ p +"']")).Click();
+            driver.FindElement(By.XPath("//a[@href='manage_proj_edit_page.php?project_id="+ index +"']")).Click();
         }
 
         public void Remove()
@@ -43,7 +43,7 @@ namespace mantis_tests
 
         public void GoToControlProject()
         {
-            driver.FindElement(By.XPath("//a[@href='/mantisbt-2.25.4/manage_proj_page.php']")).Click();
+            driver.FindElement(By.XPath("//a[@href='" + hrefBase + "/manage_proj_page.php']")).Click();
         }
 
         public void GoToAddNewProject()

@@ -12,6 +12,8 @@ namespace mantis_tests
         protected IWebDriver driver;
         protected ApplicationManager manager;
 
+        public string hrefBase = "/mantisbt-2.25.4";
+
         public HelperBase(ApplicationManager manager)
         {
             this.manager = manager;

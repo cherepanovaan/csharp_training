@@ -13,8 +13,17 @@ namespace mantis_tests
         [Test]
         public void ProjectCreationTest()
         {
+            List<ProjectData> oldProjects = ProjectData.GetAll();
+
             ProjectData project = new ProjectData(GenerateRandomString(10));
             app.ProjectHelper.CreateProject(project);
+
+            List<ProjectData> newProjects = ProjectData.GetAll();
+            oldProjects.Add(project);
+            oldProjects.Sort();
+            newProjects.Sort();
+            Assert.AreEqual(oldProjects, newProjects);
+
             app.loginHelper.Logout();
         }
     }

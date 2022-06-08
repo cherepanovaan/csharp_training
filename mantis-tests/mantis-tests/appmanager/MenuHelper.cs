@@ -13,7 +13,7 @@ namespace mantis_tests
 
         public void GoToControlMenu()
         {
-            driver.FindElement(By.XPath("//a[@href='/mantisbt-2.25.4/manage_overview_page.php']")).Click();
+            driver.FindElement(By.XPath("//a[@href='" + hrefBase + "/manage_overview_page.php']")).Click();
         }
     }
 }
