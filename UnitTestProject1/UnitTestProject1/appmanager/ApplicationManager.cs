@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace mantis_tests
+namespace UnitTestProject1
 {
     public class ApplicationManager
     {
