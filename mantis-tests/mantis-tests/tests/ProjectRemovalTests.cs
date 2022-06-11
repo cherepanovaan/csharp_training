@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace mantis_tests
 {
     [TestFixture]
-    public class ProjectRemovalTests : AuthTestBase
+    public class ProjectRemovalTests : TestBase
     {
         [Test]
         public void ProjectRemovalTest()
@@ -36,6 +36,34 @@ namespace mantis_tests
             }
 
             app.loginHelper.Logout();
+        }
+
+        [Test]
+        public void DeleteProjectTest()
+        {
+            AccountData account = new AccountData("administrator", "root");
+
+            List<ProjectData> oldProjects = app.API.GetProjectList(account);
+
+            if (oldProjects.Count == 0)
+            {
+                ProjectData project = new ProjectData(GenerateRandomString(10));
+                app.API.CreateNewProject(account, project);
+                oldProjects = app.API.GetProjectList(account);
+            }
+            ProjectData projectRemoved = oldProjects[0];
+
+            app.API.DeleteProject(account, projectRemoved);
+
+            List<ProjectData> newProjects = app.API.GetProjectList(account);
+            oldProjects.RemoveAt(0);
+
+            Assert.AreEqual(oldProjects, newProjects);
+
+            foreach (ProjectData project in newProjects)
+            {
+                Assert.AreNotEqual(project.Id, projectRemoved.Id);
+            }
         }
     }
 }

@@ -15,8 +15,8 @@ namespace mantis_tests
 
         public AccountData(string name, string password)
         {
-            this.Name = name;
-            this.Password = password;
+            Name = name;
+            Password = password;
         }
 
         public AccountData() { }

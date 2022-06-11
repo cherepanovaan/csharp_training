@@ -33,7 +33,7 @@ namespace mantis_tests
         private ApplicationManager()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost";
+            baseURL = "http://localhost/mantisbt-2.25.4";
 
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);

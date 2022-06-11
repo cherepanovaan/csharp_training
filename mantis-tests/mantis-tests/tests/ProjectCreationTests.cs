@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace mantis_tests
 {
     [TestFixture]
-    public class ProjectCreationTests : AuthTestBase
+    public class ProjectCreationTests : TestBase
     {
         [Test]
         public void ProjectCreationTest()
@@ -30,18 +30,24 @@ namespace mantis_tests
         [Test]
         public void AddNewProjectTest()
         {
-            AccountData account = new AccountData()
-            {
-                Name = "administrator",
-                Password = "root"
-            };
+            AccountData account = new AccountData("administrator", "root");
 
             ProjectData projectData = new ProjectData()
             {
                 Name = GenerateRandomString(10)
             };
 
+            List<ProjectData> oldProjects = app.API.GetProjectList(account);
+
             app.API.CreateNewProject(account, projectData);
+
+            List<ProjectData> newProjects = app.API.GetProjectList(account);
+            oldProjects.Add(projectData);
+            oldProjects.Sort();
+            newProjects.Sort();
+
+            Assert.AreEqual(oldProjects, newProjects);
+
         }
     }
 }
